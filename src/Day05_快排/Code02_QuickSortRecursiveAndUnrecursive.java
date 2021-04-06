@@ -1,5 +1,7 @@
 package Day05_快排;
 
+import java.util.Stack;
+
 /**
  * @Author : LiuYan
  * @create 2021/3/27 15:43
@@ -12,6 +14,8 @@ package Day05_快排;
  * 1）process调用的时候，par是否+1或者-1，要注意
  * 2）process递归，base case应该是l >= r，而不是==
  * 3）partition函数中， for (int i = l; i < r; i++) ，而不是for (int i = l; i < r - 1; i++)
+ * 4）快排3.0非递归版本的process4函数中，右边头位置交换的数应该是在《op.left》+ 随机值 的基础上：
+ *    swap(arr, op.right, op.left + (int)Math.random() * (op.right - op.left + 1));
  */
 public class Code02_QuickSortRecursiveAndUnrecursive {
     // 快排1.0
@@ -62,26 +66,6 @@ public class Code02_QuickSortRecursiveAndUnrecursive {
         process2(arr, par[1] + 1, r);
     }
 
-    // 以arr[r]为划分值，在arr[l..r]上划分成： <区    =区    >区
-    // 返回等于区的两端
-    private static int[] netherlandFlag(int[] arr, int l, int r) {
-        int x = arr[r];
-        int less = l - 1;
-        int more = r; // 和code01中有区别，因为这里把最后一个囊括了
-        for (int i = l; i < more;) {
-            if (arr[i] < x) {
-                swap(arr, i++, ++less);
-            } else if (arr[i] == x) {
-                i++;
-            } else {
-                swap(arr, i, --more);
-            }
-        }
-        swap(arr, r, more);
-        more++;
-        return new int[]{ less + 1, more - 1};
-    }
-
     // 快排3.0
     public static void quickSort3(int[] arr) {
         if (arr == null || arr.length < 2) {
@@ -100,6 +84,61 @@ public class Code02_QuickSortRecursiveAndUnrecursive {
         int[] par = netherlandFlag(arr, l, r);
         process3(arr, l, par[0] - 1);
         process3(arr, par[1] + 1, r);
+    }
+
+    // 快排3.0 非递归版本
+    public static void quickSort4(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        process4(arr, 0, arr.length - 1);
+    }
+    // 辅助类 要处理的范围
+    private static class Op {
+        int left;
+        int right;
+
+        public Op(int l, int r) {
+            left = l;
+            right = r;
+        }
+    }
+    private static void process4(int[] arr, int l, int r) {
+        swap(arr, r, (int)(Math.random() * (r - l + 1)));
+        int[] par = netherlandFlag(arr, l, r);
+        // 子任务压入栈
+        Stack<Op> stack = new Stack<>();
+        stack.push(new Op(l, par[0] - 1));
+        stack.push(new Op(par[0] + 1, r));
+        while (!stack.isEmpty()) {
+            Op op = stack.pop();
+            if (op.left < op.right) {
+                swap(arr, op.right, op.left + (int)Math.random() * (op.right - op.left + 1));
+                par = netherlandFlag(arr, op.left, op.right);
+                stack.push(new Op(op.left, par[0] - 1));
+                stack.push(new Op(par[0] + 1, op.right));
+            }
+        }
+    }
+
+    // 以arr[r]为划分值，在arr[l..r]上划分成： <区    =区    >区
+    // 返回等于区的两端
+    private static int[] netherlandFlag(int[] arr, int l, int r) {
+        int x = arr[r];
+        int less = l - 1;
+        int more = r; // 和code01中有区别，因为这里把最后一个囊括了
+        for (int i = l; i < more;) {
+            if (arr[i] < x) {
+                swap(arr, i++, ++less);
+            } else if (arr[i] == x) {
+                i++;
+            } else {
+                swap(arr, i, --more);
+            }
+        }
+        swap(arr, r, more);
+        more++;
+        return new int[]{ less + 1, more - 1};
     }
 
     public static void swap(int[] arr, int i, int j) {
@@ -171,7 +210,7 @@ public class Code02_QuickSortRecursiveAndUnrecursive {
             int[] arr3 = copyArray(arr1);
             quickSort1(arr1);
             quickSort2(arr2);
-            quickSort3(arr3);
+            quickSort4(arr3);
             if (!isEqual(arr1, arr2) || !isEqual(arr2, arr3)) {
                 succeed = false;
                 printArray(arr1);
