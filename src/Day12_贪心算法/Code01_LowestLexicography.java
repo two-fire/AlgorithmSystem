@@ -70,23 +70,27 @@ public class Code01_LowestLexicography {
 
     // for test
     public static void main(String[] args) {
-        int testTime = 1000;
-        int strMax = 5;
-        int strLen = 5;
-        int arrLen = 4;
-        System.out.println("test begin");
-        for (int i = 0; i < testTime; i++) {
-            String[] strs1 = generateRandStringArray(arrLen, strLen, strMax);
-            String[] strs2 = copyStringArray(strs1);
-            if (!lowestString1(strs1).equals(lowestString2(strs2))) {
-                for (String str : strs1) {
-                    System.out.print(str + ",");
-                }
-                System.out.println();
-                throw new RuntimeException("oops!");
-            }
-        }
-        System.out.println("finish!");
+//        int testTime = 1000;
+//        int strMax = 5;
+//        int strLen = 5;
+//        int arrLen = 4;
+//        System.out.println("test begin");
+//        for (int i = 0; i < testTime; i++) {
+//            String[] strs1 = generateRandStringArray(arrLen, strLen, strMax);
+//            String[] strs2 = copyStringArray(strs1);
+//            if (!lowestString1(strs1).equals(lowestString2(strs2))) {
+//                for (String str : strs1) {
+//                    System.out.print(str + ",");
+//                }
+//                System.out.println();
+//                throw new RuntimeException("oops!");
+//            }
+//        }
+//        System.out.println("finish!");
+        String[] arr1 = {"a","a","a","b"};
+        String[] arr2 = copyStringArray(arr1);
+        String s = lowestString2(arr2);
+        System.out.println(s);
     }
     // for test
     private static String[] copyStringArray(String[] strs1) {
