@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 public class Code02_BubbleSort {
     public static void bubbleSort(int[] arr) {
         for (int i = arr.length - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j <  i; j++) {
                 if (arr[j + 1] < arr[j]) {
                     swap(arr,j + 1, j);
                 }
