@@ -1,5 +1,6 @@
 package Day11_二叉树递归套路;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -81,6 +82,7 @@ public class Code01_IsCBT {
                 isCBT = true;
             }
         }
+
         if (leftInfo.isCBT && rightInfo.isFull && leftInfo.height - rightInfo.height == 1) {
             isCBT = true;
         }

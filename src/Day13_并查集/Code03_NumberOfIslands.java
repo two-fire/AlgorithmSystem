@@ -219,7 +219,7 @@ public class Code03_NumberOfIslands {
         }
 
         // 求grid[i][j]的index
-        private Integer index(int i, int j) {
+        private int index(int i, int j) {
             return i * col + j;
         }
 

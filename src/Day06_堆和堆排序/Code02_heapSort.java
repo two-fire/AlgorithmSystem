@@ -140,4 +140,9 @@ public class Code02_heapSort {
         System.out.println(succeed ? "Nice!" : "Fucking fucked!");
     }
 */
+    public static void main(String[] args) {
+        heapify(new int[]{7,6,2,3,8},0,5);
+        heapSort(new int[]{7,6,2,3,8});
+        System.out.println();
+    }
 }

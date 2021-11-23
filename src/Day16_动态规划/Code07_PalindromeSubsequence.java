@@ -112,8 +112,8 @@ public class Code07_PalindromeSubsequence {
         } else {
             int p1 = process3(str, L + 1, R); // str[R]是最终结局中的内容 str[L]不是
             int p2 = process3(str, L, R - 1); // str[R]不是 str[L]是
-            int p3 = process3(str, L + 1, R - 1); // 都是
-            int p4 = str[L] != str[R] ? 0 : (2 + process3(str, L + 1, R - 1)); // 都不是
+            int p3 = process3(str, L + 1, R - 1); // 都不是
+            int p4 = str[L] != str[R] ? 0 : (2 + process3(str, L + 1, R - 1)); // 都是
 
             return Math.max(p1, Math.max(p2, Math.max(p3, p4)));
         }

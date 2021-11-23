@@ -57,7 +57,7 @@ public class Code02_FibonacciProblem {
         int[][] base = { // 单位矩阵
                 {1, 1},
                 {1, 0}};
-        int[][] res = matrixPower(base, n - 2);
+        int[][] res = matrixPower(base, n - 2); // 矩阵的某次方
         return res[0][0] + res[1][0]; // 斐波那契的第n项
     }
     // 10^75 = 10^(2^6) * 10^(2^3) * 10^(2^1) *  10^(2^0)   75=1001011
@@ -128,7 +128,7 @@ public class Code02_FibonacciProblem {
     }
 
     public static void main(String[] args) {
-        int n = 19;
+        int n = 54;
         // 斐波那契数列三种算法
         System.out.println(f1(n));
         System.out.println(f2(n));
@@ -140,10 +140,10 @@ public class Code02_FibonacciProblem {
 //        System.out.println(s3(n));
 //        System.out.println("===");
 
-        System.out.println(c1(n));
-        System.out.println(c2(n));
-        System.out.println(c3(n));
-        System.out.println("===");
+//        System.out.println(c1(n));
+//        System.out.println(c2(n));
+//        System.out.println(c3(n));
+//        System.out.println("===");
     }
 
 }

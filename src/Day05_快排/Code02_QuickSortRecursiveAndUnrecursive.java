@@ -200,26 +200,27 @@ public class Code02_QuickSortRecursiveAndUnrecursive {
 
     // for test
     public static void main(String[] args) {
-        int testTime = 500000;
-        int maxSize = 5;
-        int maxValue = 100;
-        boolean succeed = true;
-        for (int i = 0; i < testTime; i++) {
-            int[] arr1 = generateRandomArray(maxSize, maxValue);
-            int[] arr2 = copyArray(arr1);
-            int[] arr3 = copyArray(arr1);
-            quickSort1(arr1);
-            quickSort2(arr2);
-            quickSort4(arr3);
-            if (!isEqual(arr1, arr2) || !isEqual(arr2, arr3)) {
-                succeed = false;
-                printArray(arr1);
-                printArray(arr2);
-                printArray(arr3);
-                break;
-            }
-        }
-        System.out.println(succeed ? "Nice!" : "Oops!");
+        quickSort3(new int[]{0,0,0});
+//        int testTime = 500000;
+//        int maxSize = 5;
+//        int maxValue = 100;
+//        boolean succeed = true;
+//        for (int i = 0; i < testTime; i++) {
+//            int[] arr1 = generateRandomArray(maxSize, maxValue);
+//            int[] arr2 = copyArray(arr1);
+//            int[] arr3 = copyArray(arr1);
+//            quickSort1(arr1);
+//            quickSort2(arr2);
+//            quickSort4(arr3);
+//            if (!isEqual(arr1, arr2) || !isEqual(arr2, arr3)) {
+//                succeed = false;
+//                printArray(arr1);
+//                printArray(arr2);
+//                printArray(arr3);
+//                break;
+//            }
+//        }
+//        System.out.println(succeed ? "Nice!" : "Oops!");
 
     }
 }
